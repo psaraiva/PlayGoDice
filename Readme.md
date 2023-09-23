@@ -3,7 +3,7 @@ This is game of dice using terminal.
 
 ## Deploy (local)
 - `git clone`
-- `cd PlaySlimDice`
+- `cd PlayGoDice`
 - `go run .`
 
 ## Request to play
