@@ -7,14 +7,16 @@ import (
 )
 
 func main() {
+	const quantity_dice_face = 6
+
 	var qtd int
-	dice := [6]int{1, 2, 3, 4, 5, 6}
-	aggregate := [6]int{0, 0, 0, 0, 0, 0}
+	dice := loadDice(quantity_dice_face)
+	aggregate := loadAggregate(quantity_dice_face)
 
 	fmt.Print("Enter an integer: ")
 	fmt.Scan(&qtd)
 	for i := 1; i <= qtd; i++ {
-		number := playDice(i, dice)
+		number := playDice(dice)
 		aggregate[number-1]++
 		fmt.Print(playDiceToText(i, number))
 	}
@@ -27,15 +29,33 @@ func main() {
 	}
 }
 
-func playDice(i int, dice [6]int) int {
+func loadDice(quantity int) []int {
+	var dice = make([]int, quantity)
+	for i := 0; i < quantity; i++ {
+		dice[i] = i + 1
+	}
+
+	return dice
+}
+
+func loadAggregate(quantity int) []int {
+	var dice = make([]int, quantity)
+	for i := 0; i < quantity; i++ {
+		dice[i] = 0
+	}
+
+	return dice
+}
+
+func playDice(dice []int) int {
 	time.Sleep(500 * time.Millisecond)
 	return dice[rand.Intn(len(dice))]
 }
 
-func playDiceToText(i int, number int) string {
-	return fmt.Sprintf("[%d] Dice: %d\n", i, number)
+func playDiceToText(turn int, value int) string {
+	return fmt.Sprintf("[%d] Dice: %d\n", turn, value)
 }
 
-func aggregateByIndexToText(index int, value int) string {
-	return fmt.Sprintf("Index: %d Qtd: %d\n", index, value)
+func aggregateByIndexToText(face int, value int) string {
+	return fmt.Sprintf("Face: %d Qtd: %d\n", face, value)
 }
