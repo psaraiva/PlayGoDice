@@ -1,8 +1,6 @@
 package main
 
-import (
-	"testing"
-)
+import "testing"
 
 func TestLoadDice6(t *testing.T) {
 	expected := []int{1, 2, 3, 4, 5, 6}

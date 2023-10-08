@@ -3,7 +3,7 @@ This is game of dice using terminal.
 
 ## Deploy (local)
 - `git clone`
-- `cd PlaySlimDice`
+- `cd PlayGoDice`
 - `go run .`
 
 ## Request to play
@@ -27,6 +27,7 @@ Index: 3 Qtd: 166789
 Index: 4 Qtd: 166161
 Index: 5 Qtd: 166282
 Index: 6 Qtd: 166785
+Done! It took ?.????????? seconds!
 ```
 # Test Unit
 - `go test`
