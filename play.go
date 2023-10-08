@@ -16,11 +16,14 @@ func main() {
 	fmt.Scan(&qtd)
 
 	start := time.Now()
+	ch := make(chan int)
+	for i := 1; i <= qtd; i++ {
+		go playDiceChannel(dice, ch)
+	}
 
 	for i := 1; i <= qtd; i++ {
-		number := playDice(dice)
+		number := <-ch
 		aggregate[number-1]++
-		fmt.Print(playDiceToText(i, number))
 	}
 
 	fmt.Println("---------")
@@ -47,13 +50,15 @@ func loadAggregate(quantity int) []int {
 	return make([]int, quantity)
 }
 
-func playDice(dice []int) int {
+func playDiceChannel(dice []int, ch chan int) {
 	time.Sleep(500 * time.Millisecond)
-	return dice[rand.Intn(len(dice))]
+	number := dice[rand.Intn(len(dice))]
+	fmt.Print(playDiceToText(number))
+	ch <- dice[rand.Intn(len(dice))]
 }
 
-func playDiceToText(turn int, value int) string {
-	return fmt.Sprintf("[%d] Dice: %d\n", turn, value)
+func playDiceToText(value int) string {
+	return fmt.Sprintf("Dice: %d\n", value)
 }
 
 func aggregateByIndexToText(face int, value int) string {

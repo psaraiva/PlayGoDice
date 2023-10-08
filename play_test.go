@@ -25,9 +25,11 @@ func TestLoadAggregate6(t *testing.T) {
 }
 
 func TestPlayDice6(t *testing.T) {
+	ch := make(chan int)
 	dice := []int{1, 2, 3, 4, 5, 6}
-	result := playDice(dice)
+	go playDiceChannel(dice, ch)
 
+	result := <-ch
 	if result < 1 || result > 6 {
 		t.Errorf("result '%v', out of range 1-6.", result)
 	}
@@ -35,8 +37,8 @@ func TestPlayDice6(t *testing.T) {
 }
 
 func TestPlayDiceToText(t *testing.T) {
-	expected := "[10] Dice: 6\n"
-	result := playDiceToText(10, 6)
+	expected := "Dice: 6\n"
+	result := playDiceToText(6)
 
 	if result != expected {
 		t.Errorf("result '%v', expected '%v'", result, expected)

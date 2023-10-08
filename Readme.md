@@ -13,22 +13,23 @@ Description:
 - `Face` => `6`.
 - `Quantity` => "Enter an integer:"
 
-Tested with 999,999, output example:
+Tested with 999999, output example:
 
 ```
 (...)
-[999999] Dice: 6
+Dice: 6
 ---------
 .:Table:.
 ---------
-Index: 1 Qtd: 167068
-Index: 2 Qtd: 166914
-Index: 3 Qtd: 166789
-Index: 4 Qtd: 166161
-Index: 5 Qtd: 166282
-Index: 6 Qtd: 166785
-Done! It took ?.????????? seconds!
+Face: 1 Qtd: 166289
+Face: 2 Qtd: 166826
+Face: 3 Qtd: 166650
+Face: 4 Qtd: 166847
+Face: 5 Qtd: 166229
+Face: 6 Qtd: 167158
+Done! It took 26.033195287 seconds!
 ```
+
 # Test Unit
 - `go test`
 - `go test -v`
